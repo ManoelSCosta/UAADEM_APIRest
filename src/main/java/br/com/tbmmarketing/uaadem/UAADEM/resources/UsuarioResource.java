@@ -3,6 +3,7 @@ package br.com.tbmmarketing.uaadem.UAADEM.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,34 +15,43 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tbmmarketing.uaadem.UAADEM.models.Usuario;
 import br.com.tbmmarketing.uaadem.UAADEM.repositories.UsuarioRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/tbmmarketing/usuario")
+@Api(value="UAADEM API Rest")
+@CrossOrigin(origins = "*")
 public class UsuarioResource {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@GetMapping("/listar")
+	@GetMapping("/listar_usuarios")
+	@ApiOperation(value = "Mostra uma lista conteno todos os usuários")
 	public List<Usuario> listaUsuarios(){
 		return usuarioRepository.findAll();
 	}
 	
-	@GetMapping("/mostrar/{id}")
+	@GetMapping("/mostrar_usuario/{id}")
+	@ApiOperation(value = "Mostra apenas o usuários associado ao id")
 	public Usuario listarUnicoUsuario(@PathVariable(value = "id") long id) {
 		return usuarioRepository.findById(id);
 	}
 	
-	@PostMapping("/salvar")
+	@PostMapping("/salvar_usuario")
+	@ApiOperation(value = "Cadastra um usuário no sistema")
 	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 	
-	@DeleteMapping("/deletar")
+	@DeleteMapping("/deletar_usuario")
+	@ApiOperation(value = "Remove um usuário do sistema")
 	public void deletaUsuario(@RequestBody Usuario usuario) {
 		usuarioRepository.delete(usuario);
 	}
 	
-	@PutMapping("/atualizar")
+	@PutMapping("/atualizar_usuario")
+	@ApiOperation(value = "Atualiza um usuário do sistema")
 	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}

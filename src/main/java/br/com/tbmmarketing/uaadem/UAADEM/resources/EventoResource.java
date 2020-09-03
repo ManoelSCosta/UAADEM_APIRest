@@ -26,31 +26,31 @@ public class EventoResource {
 	@Autowired
 	private EventoRepository eventoRepository;
 	
-	@GetMapping("/listar")
-	@ApiOperation(value="Retorna Uma Lista de Eventos")
+	@GetMapping("/listar_eventos")
+	@ApiOperation(value="Mostra uma lista de todos os eventos salvos no sistema")
 	public List<Evento> getAllEventos(){
 		return eventoRepository.findAll();
 	}
 	
 	@GetMapping("/mostrar/{id}")
-	@ApiOperation(value="Retorna Um Evento apenas")
+	@ApiOperation(value="Mostra apenas um evento de acordo com o id")
 	public Evento getUnicoEvento(@PathVariable(value="id") long id){
 		return eventoRepository.findById(id);
 	}
 	
 	@PostMapping("/salvar")
-	@ApiOperation(value="Salva um evento")
+	@ApiOperation(value="Cadastra um evento no sistema")
 	public Evento salvarEvento(@RequestBody Evento evento) {
 		return eventoRepository.save(evento);
 	}
 	@DeleteMapping("/deletar")
-	@ApiOperation(value="Deleta um evento")
+	@ApiOperation(value="Remove um evento do sistema")
 	public void deletaEvento(@RequestBody Evento evento) {
 		eventoRepository.delete(evento);
 	}
 	
 	@PutMapping("/atualizar")
-	@ApiOperation(value="Atualiza um evento")
+	@ApiOperation(value="Atualiza um evento do sistema")
 	public Evento atualizaEvento(@RequestBody Evento evento) {
 		return eventoRepository.save(evento);
 	}

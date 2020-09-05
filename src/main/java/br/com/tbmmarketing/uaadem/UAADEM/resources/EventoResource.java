@@ -43,10 +43,10 @@ public class EventoResource {
 	public Evento salvarEvento(@RequestBody Evento evento) {
 		return eventoRepository.save(evento);
 	}
-	@DeleteMapping("/deletar")
+	@DeleteMapping("/deletar/{id}")
 	@ApiOperation(value="Remove um evento do sistema")
-	public void deletaEvento(@RequestBody Evento evento) {
-		eventoRepository.delete(evento);
+	public void deletaEvento(@PathVariable(value="id") long id) {
+		 eventoRepository.delete(eventoRepository.findById(id));
 	}
 	
 	@PutMapping("/atualizar")

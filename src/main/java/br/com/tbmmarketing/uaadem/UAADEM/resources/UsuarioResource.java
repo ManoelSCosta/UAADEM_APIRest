@@ -46,8 +46,8 @@ public class UsuarioResource {
 	
 	@DeleteMapping("/deletar/{id}")
 	@ApiOperation(value = "Remove um usuário do sistema")
-	public void deletaUsuario((@PathVariable(value = "id")long id) {
-		usuarioRepository.findById(id);
+	public void deletaUsuario(@PathVariable(value="id") long id) {
+		usuarioRepository.delete(usuarioRepository.findById(id));
 	}
 	
 	@PutMapping("/atualizar")

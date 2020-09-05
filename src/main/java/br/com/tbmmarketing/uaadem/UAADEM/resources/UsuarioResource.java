@@ -44,10 +44,10 @@ public class UsuarioResource {
 		return usuarioRepository.save(usuario);
 	}
 	
-	@DeleteMapping("/deletar")
+	@DeleteMapping("/deletar/{id}")
 	@ApiOperation(value = "Remove um usuário do sistema")
-	public void deletaUsuario(@RequestBody Usuario usuario) {
-		usuarioRepository.delete(usuario);
+	public void deletaUsuario((@PathVariable(value = "id")long id) {
+		usuarioRepository.findById(id);
 	}
 	
 	@PutMapping("/atualizar")

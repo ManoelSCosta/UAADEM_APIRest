@@ -26,7 +26,7 @@ public class EventoResource {
 	@Autowired
 	private EventoRepository eventoRepository;
 	
-	@GetMapping("/listar_eventos")
+	@GetMapping("/listar")
 	@ApiOperation(value="Mostra uma lista de todos os eventos salvos no sistema")
 	public List<Evento> getAllEventos(){
 		return eventoRepository.findAll();

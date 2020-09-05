@@ -26,31 +26,31 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@GetMapping("/listar_usuarios")
+	@GetMapping("/listar")
 	@ApiOperation(value = "Mostra uma lista conteno todos os usuários")
 	public List<Usuario> listaUsuarios(){
 		return usuarioRepository.findAll();
 	}
 	
-	@GetMapping("/mostrar_usuario/{id}")
+	@GetMapping("/mostrar/usuario/{id}")
 	@ApiOperation(value = "Mostra apenas o usuários associado ao id")
 	public Usuario listarUnicoUsuario(@PathVariable(value = "id") long id) {
 		return usuarioRepository.findById(id);
 	}
 	
-	@PostMapping("/salvar_usuario")
+	@PostMapping("/salvar")
 	@ApiOperation(value = "Cadastra um usuário no sistema")
 	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 	
-	@DeleteMapping("/deletar_usuario")
+	@DeleteMapping("/deletar")
 	@ApiOperation(value = "Remove um usuário do sistema")
 	public void deletaUsuario(@RequestBody Usuario usuario) {
 		usuarioRepository.delete(usuario);
 	}
 	
-	@PutMapping("/atualizar_usuario")
+	@PutMapping("/atualizar")
 	@ApiOperation(value = "Atualiza um usuário do sistema")
 	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
